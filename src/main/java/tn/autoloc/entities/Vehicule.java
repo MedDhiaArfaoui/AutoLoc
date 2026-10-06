@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import tn.autoloc.Enum.CategorieVehicule;
 import tn.autoloc.Enum.StatutVehicule;
+import java.util.List;
 
 import java.math.BigDecimal;
 
@@ -33,4 +34,24 @@ public class Vehicule {
 
     @Enumerated(EnumType.STRING)
     private StatutVehicule statut;
+
+    @ManyToOne
+    @JoinColumn(name = "agence_id")
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Maintenance> maintenances;
+
+    @ManyToMany
+    @JoinTable(
+            name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "vehicule_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipement_id")
+    )
+    private List<Equipement> equipements;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Reservation> reservations;
+
+
 }

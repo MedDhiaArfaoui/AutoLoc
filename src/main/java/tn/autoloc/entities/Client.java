@@ -2,7 +2,7 @@ package tn.autoloc.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.util.List;
 import java.time.LocalDate;
 
 @Entity
@@ -23,4 +23,10 @@ public class Client {
     private String telephone;
     private String numPermis;
     private LocalDate dateInscription;
+
+    @OneToMany(mappedBy = "client")
+    private List<Reservation> reservations;
+
+
+
 }

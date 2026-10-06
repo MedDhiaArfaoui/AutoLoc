@@ -1,5 +1,5 @@
 package tn.autoloc.entities;
-
+import java.util.List;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,4 +19,10 @@ public class Agence {
     private String ville;
     private String adresse;
     private String telephone;
+
+    @OneToMany(mappedBy = "agence")
+    private List<Employe> employes;
+
+    @OneToMany(mappedBy = "agence")
+    private List<Vehicule> vehicules;
 }
