@@ -35,4 +35,5 @@ public class Reservation {
 
     @OneToOne(mappedBy = "reservation")
     private Contrat contrat;
+
 }
